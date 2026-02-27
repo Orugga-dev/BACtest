@@ -45,7 +45,57 @@
     ::-webkit-scrollbar-thumb { background: #244147; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #17b0cf; }
     html { scroll-behavior: smooth; }
-  </style>
+  /* Stats “alive” effects */
+@keyframes statsSheen {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+.stats-sheen{
+  background: linear-gradient(90deg, rgba(23,176,207,0.0), rgba(23,176,207,0.22), rgba(23,176,207,0.0));
+  background-size: 200% 100%;
+  animation: statsSheen 6s linear infinite;
+}
+@keyframes statsFloat {
+  0% { transform: translate3d(0,0,0); }
+  50% { transform: translate3d(-18px, 10px, 0); }
+  100% { transform: translate3d(0,0,0); }
+}
+@keyframes statsFloat2 {
+  0% { transform: translate3d(0,0,0); }
+  50% { transform: translate3d(14px, -12px, 0); }
+  100% { transform: translate3d(0,0,0); }
+}
+.stats-float{ animation: statsFloat 10s ease-in-out infinite; }
+.stats-float2{ animation: statsFloat2 12s ease-in-out infinite; }
+
+@keyframes statPop {
+  0% { transform: scale(1); }
+  55% { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+.stat-pop { animation: statPop 520ms ease-out 1; }
+
+/* Subtle animated dot-grid layer for stats */
+@keyframes statsDotsMove {
+  0% { transform: translate3d(0,0,0); }
+  100% { transform: translate3d(-60px, 40px, 0); }
+}
+.stats-dots{
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(23,176,207,0.55) 1px, rgba(23,176,207,0.0) 2px);
+  background-size: 26px 26px;
+  animation: statsDotsMove 18s linear infinite;
+  mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.0) 72%);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.0) 72%);
+}
+
+/* Partners tiles readability */
+.stats-vignette{
+  pointer-events:none;
+  background: radial-gradient(120% 90% at 40% 30%, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.70) 100%);
+}
+
+</style>
 </head>
 
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-sans antialiased overflow-x-hidden transition-colors duration-300">
@@ -142,29 +192,35 @@
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div class="relative group rounded-xl overflow-hidden h-[400px] flex items-end">
           <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuCZ0nOQ5PoUmJNUnJfz9OZAjrl0aORNQmNZVJMdJRoOq0GfFN9s30N7QqRmY9s_uZlRxgO6H3xlDVvGt4tLXlxA7DyUraj_pUoUU_aND57GUm7g7yDjOIxg9HPJVflRxdv_kcIN64W6VtYJq_VFbFNhB0mV8BJ4XW2LuzId8UYKWPlGtNLnStphzOYNHp2mLEI9GApmfTJwN8SzePv5e0xP9UsC0QxUkL9VAUkR0FfjgBwk8Pl-N9Xx_X7U4438S6en6neqhyYCLmw')" aria-hidden="true"></div>
-          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-transparent"></div>
+          <div class="absolute inset-0 stats-vignette"></div>
           <div class="relative z-10 p-8 md:p-12 w-full">
-            <div class="flex items-center gap-3 mb-3 text-primary">
+            <div class="partner-panel max-w-md rounded-xl bg-black/55 backdrop-blur-md border border-white/10 p-6 shadow-[0_18px_50px_rgba(0,0,0,0.45)] transition-transform duration-300 group-hover:-translate-y-1">
+            <div class="inline-flex items-center gap-2 mb-3 text-primary bg-primary/10 border border-primary/20 rounded-full px-3 py-1">
               <span class="material-symbols-outlined">account_balance</span>
               <span class="text-sm font-bold uppercase tracking-wider">Capital</span>
             </div>
-            <h3 class="text-3xl font-serif font-bold text-white mb-4">Investors</h3>
-            <p class="text-gray-300 text-lg mb-6 max-w-md">We support funds across investment evaluation, acquisition processes, due diligence, and post-investment strategy.</p>
-            <a class="inline-flex items-center text-white font-bold border-b border-primary pb-1 hover:text-primary transition-colors" href="contact.html">Learn more<span class="material-symbols-outlined text-sm ml-1">arrow_forward</span></a>
+            <h3 class="text-3xl font-serif font-bold text-white mb-3 drop-shadow">Investors</h3>
+            <p class="text-white/90 text-lg mb-5 leading-relaxed drop-shadow-sm">We support funds across investment evaluation, acquisition processes, due diligence, and post-investment strategy.</p>
+            <a class="inline-flex items-center gap-2 text-white font-bold bg-white/5 hover:bg-white/10 border border-white/10 hover:border-primary/40 rounded-lg px-4 py-2 transition-colors"  href="contact.html">Learn more<span class="material-symbols-outlined text-sm ml-1">arrow_forward</span></a>
+            </div>
           </div>
         </div>
 
         <div class="relative group rounded-xl overflow-hidden h-[400px] flex items-end">
           <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuAFxRNXrRYk_x0-7zA-SatTjvGxLZI-44OC8py8OkJcbnZdmTs9_NsPKkJTzExzRDM5GyfZ6P3rg4UFjs_szv05gixUk4aHBuGTPk5MFR-lxoWjxjBzAIAWNVJ6M3KK-8wp861QgV7_Z2vH1oaxXQmYKaZOxTlx37oLRH7lO3FYR9lJmTtZkoilvYcnd5QNTjNn4NS9TuJuTbIkrSV8rUjJVwuy5sOqNTkeRxmZlcKbcfd4iQezFTvh2FfNMQfSI88H1bFAYH-f2XM')" aria-hidden="true"></div>
-          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-transparent"></div>
+          <div class="absolute inset-0 stats-vignette"></div>
           <div class="relative z-10 p-8 md:p-12 w-full">
-            <div class="flex items-center gap-3 mb-3 text-primary">
+            <div class="partner-panel max-w-md rounded-xl bg-black/55 backdrop-blur-md border border-white/10 p-6 shadow-[0_18px_50px_rgba(0,0,0,0.45)] transition-transform duration-300 group-hover:-translate-y-1">
+            <div class="inline-flex items-center gap-2 mb-3 text-primary bg-primary/10 border border-primary/20 rounded-full px-3 py-1">
               <span class="material-symbols-outlined">business</span>
               <span class="text-sm font-bold uppercase tracking-wider">Enterprise</span>
             </div>
-            <h3 class="text-3xl font-serif font-bold text-white mb-4">Companies</h3>
-            <p class="text-gray-300 text-lg mb-6 max-w-md">We help companies accelerate growth, prepare for investment, and execute regional expansion supported by senior leadership.</p>
-            <a class="inline-flex items-center text-white font-bold border-b border-primary pb-1 hover:text-primary transition-colors" href="index.html#expertise">Learn more<span class="material-symbols-outlined text-sm ml-1">arrow_forward</span></a>
+            <h3 class="text-3xl font-serif font-bold text-white mb-3 drop-shadow">Companies</h3>
+            <p class="text-white/90 text-lg mb-5 leading-relaxed drop-shadow-sm">We help companies accelerate growth, prepare for investment, and execute regional expansion supported by senior leadership.</p>
+            <a class="inline-flex items-center gap-2 text-white font-bold bg-white/5 hover:bg-white/10 border border-white/10 hover:border-primary/40 rounded-lg px-4 py-2 transition-colors"  href="index.html#expertise">Learn more<span class="material-symbols-outlined text-sm ml-1">arrow_forward</span></a>
+            </div>
           </div>
         </div>
       </div>
@@ -172,32 +228,53 @@
   </section>
 
   <!-- Stats -->
-  <section class="py-24 bg-background-light dark:bg-background-dark border-y border-slate-200 dark:border-[#244147]">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="p-8 border-l border-slate-300 dark:border-[#244147]">
-          <span class="block text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-2 tracking-tighter">30+</span>
-          <span class="text-primary text-sm font-bold uppercase tracking-wider mb-2 block">Years</span>
-          <p class="text-slate-600 dark:text-text-subtle font-medium">Regional leadership experience in telecom &amp; technology.</p>
-        </div>
-        <div class="p-8 border-l border-slate-300 dark:border-[#244147]">
-          <span class="block text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-2 tracking-tighter">15+</span>
-          <span class="text-primary text-sm font-bold uppercase tracking-wider mb-2 block">Countries</span>
-          <p class="text-slate-600 dark:text-text-subtle font-medium">Experience across Ibero-America markets.</p>
-        </div>
-        <div class="p-8 border-l border-slate-300 dark:border-[#244147]">
-          <span class="block text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-2 tracking-tighter">Board</span>
-          <span class="text-primary text-sm font-bold uppercase tracking-wider mb-2 block">Support</span>
-          <p class="text-slate-600 dark:text-text-subtle font-medium">Participation to drive execution and growth.</p>
-        </div>
-        <div class="p-8 border-l border-slate-300 dark:border-[#244147]">
-          <span class="block text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-2 tracking-tighter">Network</span>
-          <span class="text-primary text-sm font-bold uppercase tracking-wider mb-2 block">Access</span>
-          <p class="text-slate-600 dark:text-text-subtle font-medium">Strategic connections with regional decision makers.</p>
-        </div>
+  <section id="stats" class="relative overflow-hidden py-24 bg-background-light dark:bg-background-dark border-y border-slate-200 dark:border-[#244147]">
+  <!-- Subtle animated “life” layer -->
+  <div class="pointer-events-none absolute inset-0">
+    <div class="absolute inset-0 opacity-[0.07] dark:opacity-[0.10] stats-sheen"></div>
+    <div class="absolute inset-0 opacity-[0.10] dark:opacity-[0.14] stats-dots"></div>
+    <div class="absolute -top-24 -right-24 w-[520px] h-[520px] rounded-full bg-primary/12 blur-3xl stats-float"></div>
+    <div class="absolute -bottom-28 -left-24 w-[520px] h-[520px] rounded-full bg-white/7 blur-3xl stats-float2"></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="stat-item relative p-8 border-l border-slate-300 dark:border-[#244147] opacity-0 translate-y-3 transition-all duration-700 ease-out">
+        <span class="stat-value block text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-2 tracking-tighter"
+              data-count="30" data-suffix="+">0</span>
+        <span class="stat-underline block h-[2px] w-10 bg-slate-200 dark:bg-slate-700 origin-left scale-x-0 transition-transform duration-700"></span>
+
+        <span class="mt-4 text-primary text-sm font-bold uppercase tracking-wider mb-2 block">Years</span>
+        <p class="text-slate-600 dark:text-text-subtle font-medium">Regional leadership experience in telecom &amp; technology.</p>
+      </div>
+
+      <div class="stat-item relative p-8 border-l border-slate-300 dark:border-[#244147] opacity-0 translate-y-3 transition-all duration-700 ease-out">
+        <span class="stat-value block text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-2 tracking-tighter"
+              data-count="15" data-suffix="+">0</span>
+        <span class="stat-underline block h-[2px] w-10 bg-slate-200 dark:bg-slate-700 origin-left scale-x-0 transition-transform duration-700"></span>
+
+        <span class="mt-4 text-primary text-sm font-bold uppercase tracking-wider mb-2 block">Countries</span>
+        <p class="text-slate-600 dark:text-text-subtle font-medium">Experience across Ibero-America markets.</p>
+      </div>
+
+      <div class="stat-item relative p-8 border-l border-slate-300 dark:border-[#244147] opacity-0 translate-y-3 transition-all duration-700 ease-out">
+        <span class="block text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-2 tracking-tighter">Board</span>
+        <span class="stat-underline block h-[2px] w-10 bg-slate-200 dark:bg-slate-700 origin-left scale-x-0 transition-transform duration-700"></span>
+
+        <span class="mt-4 text-primary text-sm font-bold uppercase tracking-wider mb-2 block">Support</span>
+        <p class="text-slate-600 dark:text-text-subtle font-medium">Participation to drive execution and growth.</p>
+      </div>
+
+      <div class="stat-item relative p-8 border-l border-slate-300 dark:border-[#244147] opacity-0 translate-y-3 transition-all duration-700 ease-out">
+        <span class="block text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-2 tracking-tighter">Network</span>
+        <span class="stat-underline block h-[2px] w-10 bg-slate-200 dark:bg-slate-700 origin-left scale-x-0 transition-transform duration-700"></span>
+
+        <span class="mt-4 text-primary text-sm font-bold uppercase tracking-wider mb-2 block">Access</span>
+        <p class="text-slate-600 dark:text-text-subtle font-medium">Strategic connections with regional decision makers.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- Leadership preview -->
   <section class="py-24 bg-white dark:bg-[#0d1618]">
@@ -268,5 +345,75 @@
 
   <div data-include="footer" data-lang="en"></div>
   <script src="../assets/js/includes.js"></script>
+<script>
+  (function () {
+    function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+    function animateCount(el, target, suffix) {
+      var start = 0;
+      var duration = 1100; // ms
+      var startTime = null;
+
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        var progress = Math.min((timestamp - startTime) / duration, 1);
+        var eased = easeOutCubic(progress);
+        var value = Math.round(start + (target - start) * eased);
+        el.textContent = String(value) + (suffix || "");
+        if (progress < 1) { requestAnimationFrame(step); } else {
+          el.classList.remove("stat-pop");
+          // trigger reflow to restart animation if needed
+          void el.offsetWidth;
+          el.classList.add("stat-pop");
+        }
+      }
+      requestAnimationFrame(step);
+    }
+
+    function initStatsAnimations() {
+      var section = document.getElementById("stats");
+      if (!section) return;
+
+      var items = Array.prototype.slice.call(section.querySelectorAll(".stat-item"));
+      var counters = Array.prototype.slice.call(section.querySelectorAll(".stat-value[data-count]"));
+
+      var hasRun = false;
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            // Reveal items (staggered)
+            items.forEach(function (item, i) {
+              setTimeout(function () {
+                item.classList.remove("opacity-0", "translate-y-3");
+                item.classList.add("opacity-100", "translate-y-0");
+                var ul = item.querySelector(".stat-underline");
+                if (ul) { ul.classList.remove("scale-x-0"); ul.classList.add("scale-x-100"); }
+              }, i * 90);
+            });
+
+            if (!hasRun) {
+              hasRun = true;
+              counters.forEach(function (el) {
+                var target = parseInt(el.getAttribute("data-count"), 10) || 0;
+                var suffix = el.getAttribute("data-suffix") || "";
+                animateCount(el, target, suffix);
+              });
+            }
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.25 });
+
+      observer.observe(section);
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initStatsAnimations);
+    } else {
+      initStatsAnimations();
+    }
+  })();
+</script>
 </body>
 </html>
