@@ -115,10 +115,11 @@ body > * { position: relative; z-index: 1; }
   background-size: cover;
   background-position: center;
   will-change: transform;
+  opacity: var(--hero-opacity, 0.45);
 }
 .hero-kenburns{ animation: heroKenBurns 26s ease-in-out infinite; }
 .hero-vignette{
-  background: radial-gradient(1200px 600px at 50% 20%, rgba(17,31,34,0.20), rgba(17,31,34,0.75));
+  background: radial-gradient(1200px 600px at 50% 20%, rgba(17,31,34,0.08), rgba(17,31,34,0.62));
 }
 .hero-grain{
   opacity: 0.10;
