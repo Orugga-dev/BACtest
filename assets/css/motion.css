@@ -151,3 +151,6 @@ body > * { position: relative; z-index: 1; }
   border-bottom-color: rgba(36,65,71,0.85) !important;
   box-shadow: 0 10px 30px rgba(0,0,0,0.25);
 }
+
+/* Leadership cards: keep LinkedIn buttons aligned regardless of bio length */
+.leader-bio{ min-height: 6.5rem; }
