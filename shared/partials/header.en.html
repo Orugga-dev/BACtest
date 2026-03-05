@@ -1,13 +1,14 @@
 <header class="fixed top-0 left-0 w-full z-50 bg-[#111f22]/90 backdrop-blur-md border-b border-[#244147]">
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-    <a href="index.html" class="flex items-center gap-3">
+    <!-- Logo -->
+    <a href="index.html" class="flex items-center gap-3" aria-label="Hublat home">
       <img src="../assets/img/logo/hublat-white.png" alt="Hublat" class="h-6 w-auto" />
     </a>
-          <a href="expertise.html" class="nav-link">Expertise</a>
 
+    <!-- Desktop nav -->
     <nav class="hidden md:flex items-center gap-8">
-      <a data-nav class="text-gray-300 hover:text-primary text-sm font-medium transition-colors" href="index.html#expertise">Expertise</a>
-      <a data-nav class="text-gray-300 hover:text-primary text-sm font-medium transition-colors" href="index.html#partners">Partners</a>
+      <a data-nav class="text-gray-300 hover:text-primary text-sm font-medium transition-colors" href="expertise.html">Expertise</a>
+      <a data-nav class="text-gray-300 hover:text-primary text-sm font-medium transition-colors" href="partners.html">Partners</a>
       <a data-nav class="text-gray-300 hover:text-primary text-sm font-medium transition-colors" href="case-studies.html">Case Studies</a>
       <a data-nav class="text-gray-300 hover:text-primary text-sm font-medium transition-colors" href="leadership.html">Leadership</a>
       <a data-nav class="text-gray-300 hover:text-primary text-sm font-medium transition-colors" href="contact.html">Contact</a>
@@ -15,21 +16,24 @@
       <a class="text-gray-300 hover:text-white text-sm font-medium transition-colors" href="../es/index.html">ES</a>
     </nav>
 
+    <!-- Desktop CTA -->
     <div class="hidden md:flex items-center gap-3">
       <a href="contact.html" class="flex items-center justify-center rounded-lg bg-primary hover:bg-primary/90 transition-colors h-10 px-5 text-[#111f22] text-sm font-bold">
         Start a Conversation
       </a>
     </div>
 
+    <!-- Mobile toggle -->
     <button data-mobile-menu-button class="md:hidden text-white border border-white/15 rounded-lg px-3 py-2 hover:bg-white/5" type="button" aria-label="Open menu" aria-expanded="false">
       <span class="material-symbols-outlined">menu</span>
     </button>
   </div>
 
+  <!-- Mobile menu -->
   <div data-mobile-menu class="md:hidden hidden border-t border-[#244147] bg-[#111f22]">
     <div class="px-6 py-4 flex flex-col gap-3">
-      <a class="text-gray-300 hover:text-primary" href="index.html#expertise">Expertise</a>
-      <a class="text-gray-300 hover:text-primary" href="index.html#partners">Partners</a>
+      <a class="text-gray-300 hover:text-primary" href="expertise.html">Expertise</a>
+      <a class="text-gray-300 hover:text-primary" href="partners.html">Partners</a>
       <a class="text-gray-300 hover:text-primary" href="case-studies.html">Case Studies</a>
       <a class="text-gray-300 hover:text-primary" href="leadership.html">Leadership</a>
       <a class="text-gray-300 hover:text-primary" href="contact.html">Contact</a>
@@ -39,19 +43,22 @@
       </a>
     </div>
   </div>
-<script>
-  (function(){
-    function addCss(href){
-      if ([].slice.call(document.styleSheets).some(function(s){ return (s.href||'').includes(href); })) return;
-      var l=document.createElement('link'); l.rel='stylesheet'; l.href=href; document.head.appendChild(l);
-    }
-    function addJs(src){
-      if ([].slice.call(document.scripts).some(function(s){ return (s.src||'').includes(src); })) return;
-      var s=document.createElement('script'); s.src=src; s.defer=true; document.head.appendChild(s);
-    }
-    // works from /en/* and /es/*
-    addCss('../assets/css/motion.css');
-    addJs('../assets/js/motion.js');
-  })();
-</script>
+
+  <!-- Global motion loader (kept here so it applies site-wide) -->
+  <script>
+    (function(){
+      function addCss(href){
+        try{
+          if ([].slice.call(document.styleSheets).some(function(s){ return (s.href||'').includes(href); })) return;
+        }catch(e){}
+        var l=document.createElement('link'); l.rel='stylesheet'; l.href=href; document.head.appendChild(l);
+      }
+      function addJs(src){
+        if ([].slice.call(document.scripts).some(function(s){ return (s.src||'').includes(src); })) return;
+        var s=document.createElement('script'); s.src=src; s.defer=true; document.head.appendChild(s);
+      }
+      addCss('../assets/css/motion.css');
+      addJs('../assets/js/motion.js');
+    })();
+  </script>
 </header>
