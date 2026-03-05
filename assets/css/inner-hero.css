@@ -4,13 +4,34 @@
   overflow: hidden;
 }
 .inner-hero .hero-media{
-  filter: saturate(1.05) contrast(1.02);
+  /* Make internal hero imagery clearly secondary to text */
+  opacity: 0.18 !important;
+  filter: saturate(0.92) contrast(1.05) brightness(0.55) blur(1.6px);
 }
 .inner-hero .hero-vignette{
-  background: radial-gradient(90% 70% at 50% 35%, rgba(17,31,34,0.15) 0%, rgba(17,31,34,0.70) 55%, rgba(17,31,34,0.92) 100%);
+  /* Stronger, more uniform darkening for readability */
+  background:
+    radial-gradient(80% 60% at 50% 30%, rgba(17,31,34,0.30) 0%, rgba(17,31,34,0.80) 55%, rgba(17,31,34,0.96) 100%),
+    linear-gradient(180deg, rgba(17,31,34,0.55) 0%, rgba(17,31,34,0.78) 40%, rgba(17,31,34,0.92) 100%);
 }
 .inner-hero .hero-grain{
-  opacity: 0.08;
+  opacity: 0.06;
+}
+
+/* Ensure content sits above overlays */
+.inner-hero > .max-w-5xl,
+.inner-hero > .max-w-6xl,
+.inner-hero > .max-w-7xl,
+.inner-hero > .container{
+  position: relative;
+  z-index: 2;
+}
+
+/* Tiny shadow to keep text legible on any image */
+.inner-hero h1,
+.inner-hero h2,
+.inner-hero p{
+  text-shadow: 0 2px 16px rgba(0,0,0,0.45);
 }
 @media (prefers-reduced-motion: reduce){
   .hero-kenburns{ animation: none !important; }
